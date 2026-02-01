@@ -6,16 +6,11 @@
 <title>For Gubbi ❤️</title>
 
 <style>
-/* ---------------- BODY ---------------- */
 body{
   margin:0;
-  height:100vh;
-  overflow:hidden; /* FULL SCREEN LOCK */
-  display:flex;
-  justify-content:center;
-  align-items:center;
   font-family:'Segoe UI',sans-serif;
   color:white;
+  text-align:center;
 
   background:linear-gradient(-45deg,#ff758c,#ff7eb3,#ff4d6d,#ff9a9e);
   background-size:400% 400%;
@@ -28,19 +23,19 @@ body{
   100%{background-position:0% 50%;}
 }
 
-/* ---------------- CARD ---------------- */
+/* CARD */
 .card{
   width:340px;
-  max-height:92vh;
-  background:rgba(255,255,255,0.15);
-  backdrop-filter:blur(20px);
+  margin:40px auto;
   padding:25px;
   border-radius:30px;
-  text-align:center;
-  box-shadow:0 15px 40px rgba(0,0,0,0.4);
+  background:rgba(255,255,255,0.15);
+  backdrop-filter:blur(20px);
+  box-shadow:0 15px 40px rgba(0,0,0,0.35);
+  position:relative;
 }
 
-/* ---------------- GLOW NAME ---------------- */
+/* GLOW NAME */
 .name{
   font-size:30px;
   font-weight:bold;
@@ -52,7 +47,7 @@ body{
   to{ text-shadow:0 0 25px #fff,0 0 40px #ff4d6d; }
 }
 
-/* ---------------- PHOTO ---------------- */
+/* PHOTO */
 .photo{
   width:130px;
   height:130px;
@@ -62,32 +57,44 @@ body{
   margin:12px 0;
 }
 
-/* ---------------- LETTER ---------------- */
+/* LETTER */
 .letter{
   font-size:14px;
   line-height:1.6;
   margin:15px 0;
 }
 
-/* ---------------- TIMER ---------------- */
+/* TIMER */
 .timer{
   font-size:13px;
-  margin:10px 0;
-  opacity:.9;
+  margin-bottom:10px;
 }
 
-/* ---------------- BUTTONS ---------------- */
+/* BUTTONS */
+.buttons{
+  position:relative;
+  height:60px;
+}
+
 button{
   padding:10px 22px;
   border:none;
   border-radius:25px;
   font-size:16px;
-  margin:8px;
   cursor:pointer;
 }
 
-#yesBtn{background:#00c853;color:white;}
-#noBtn{background:#ff1744;color:white;position:absolute;}
+#yesBtn{
+  background:#00c853;
+  color:white;
+}
+
+#noBtn{
+  background:#ff1744;
+  color:white;
+  position:absolute;
+  left:160px;
+}
 
 #message{
   display:none;
@@ -95,7 +102,7 @@ button{
   font-weight:bold;
 }
 
-/* ---------------- HEARTS ---------------- */
+/* floating hearts */
 .heart{
   position:fixed;
   bottom:-20px;
@@ -106,7 +113,7 @@ button{
   to{ transform:translateY(-110vh); }
 }
 
-/* ---------------- FIREWORKS ---------------- */
+/* fireworks */
 canvas{
   position:fixed;
   top:0;
@@ -114,7 +121,7 @@ canvas{
   pointer-events:none;
 }
 
-/* ---------------- MUSIC BTN ---------------- */
+/* music button */
 #musicBtn{
   position:fixed;
   top:12px;
@@ -137,25 +144,24 @@ canvas{
 
   <img src="photo.jpg" class="photo">
 
-  <!-- LOVE TIMER -->
-  <div class="timer" id="loveTimer"></div>
+  <div id="loveTimer" class="timer"></div>
 
   <div class="letter">
     From the day you came into my life,<br>
-    everything feels brighter and calmer.<br>
-    Your smile is my home, your love is my world.<br><br>
-    I don’t want just moments…<br>
-    I want forever with you.<br><br>
+    everything feels brighter and happier.<br>
+    Your smile is my peace, your love is my home.<br><br>
+    I don’t want just moments… I want forever with you.<br><br>
     <b>Will you be my always?</b>
   </div>
 
-  <button id="yesBtn">Always 💖</button>
-  <button id="noBtn">Think again 😜</button>
+  <div class="buttons">
+    <button id="yesBtn">Always 💖</button>
+    <button id="noBtn">Think again 😜</button>
+  </div>
 
   <div id="message">
     You just made me the happiest man alive ❤️<br>
-    Forever yours,<br>
-    — Subba
+    Forever’s Subba ❤️
   </div>
 
 </div>
@@ -165,11 +171,8 @@ canvas{
 </audio>
 
 <script>
-
-/* ---------------- LOVE TIMER ---------------- */
-/* 👉 CHANGE THIS DATE TO YOUR FIRST MEET DATE */
-const startDate = new Date("2024-11-13"); // EDIT THIS
-
+/* LOVE TIMER */
+const startDate = new Date("2024-11-13"); // change your date
 const loveTimer = document.getElementById("loveTimer");
 
 setInterval(()=>{
@@ -180,12 +183,12 @@ setInterval(()=>{
   const hours = Math.floor((diff/(1000*60*60))%24);
   const mins = Math.floor((diff/(1000*60))%60);
 
-  loveTimer.innerHTML =
+  loveTimer.innerText =
     `Together for ${days} days ${hours} hrs ${mins} mins ❤️`;
 },1000);
 
 
-/* ---------------- FLOATING HEARTS ---------------- */
+/* floating hearts */
 setInterval(()=>{
   const h=document.createElement("div");
   h.innerHTML="❤️";
@@ -196,20 +199,23 @@ setInterval(()=>{
 },400);
 
 
-/* ---------------- MUSIC ---------------- */
+/* music */
 const music=document.getElementById("bgMusic");
 document.getElementById("musicBtn").onclick=()=>music.play();
 
 
-/* ---------------- RUNNING NO ---------------- */
+/* fixed running button INSIDE card */
 const noBtn=document.getElementById("noBtn");
+
 noBtn.onmouseover=()=>{
-  noBtn.style.left=Math.random()*(innerWidth-100)+"px";
-  noBtn.style.top=Math.random()*(innerHeight-50)+"px";
+  const maxX = 220;  // inside card
+  const maxY = 20;
+  noBtn.style.left=Math.random()*maxX+"px";
+  noBtn.style.top=Math.random()*maxY+"px";
 };
 
 
-/* ---------------- YES CLICK ---------------- */
+/* YES click */
 const yesBtn=document.getElementById("yesBtn");
 const message=document.getElementById("message");
 
@@ -222,7 +228,7 @@ yesBtn.onclick=()=>{
 };
 
 
-/* ---------------- FIREWORKS ---------------- */
+/* fireworks */
 const canvas=document.getElementById("fireworks");
 const ctx=canvas.getContext("2d");
 canvas.width=innerWidth;
