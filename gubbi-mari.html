@@ -1,179 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>For Rashmi ❤️</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>For Rashmi ❤️</title>
 
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      overflow: hidden;
-      font-family: 'Segoe UI', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #ff758c, #ff7eb3);
-      color: white;
-      text-align: center;
-    }
+<style>
+body{
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  height:100vh;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:white;
 
-    .card {
-      background: rgba(255,255,255,0.15);
-      backdrop-filter: blur(15px);
-      padding: 40px;
-      border-radius: 25px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-      z-index: 2;
-    }
+  background:linear-gradient(-45deg,#ff758c,#ff7eb3,#ff4d6d,#ff9a9e);
+  background-size:400% 400%;
+  animation:bgMove 10s ease infinite;
+}
 
-    h1 {
-      font-size: 38px;
-      margin-bottom: 10px;
-    }
+@keyframes bgMove{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
 
-    .heart {
-      font-size: 55px;
-      animation: beat 1s infinite;
-    }
+/* CARD */
+.card{
+  width:340px;
+  max-height:90vh;
+  overflow:auto;
+  background:rgba(255,255,255,0.15);
+  backdrop-filter:blur(18px);
+  padding:25px;
+  border-radius:30px;
+  text-align:center;
+  box-shadow:0 15px 40px rgba(0,0,0,0.35);
+  z-index:2;
+}
 
-    @keyframes beat {
-      0%,100% {transform: scale(1);}
-      50% {transform: scale(1.2);}
-    }
+/* PHOTO */
+.photo{
+  width:130px;
+  height:130px;
+  border-radius:50%;
+  object-fit:cover;
+  border:4px solid white;
+  margin-bottom:12px;
+  box-shadow:0 5px 20px rgba(0,0,0,0.4);
+}
 
-    #timer {
-      margin: 15px 0;
-      font-size: 18px;
-      opacity: 0.9;
-    }
+/* LETTER */
+.letter{
+  font-size:14px;
+  margin:15px 0;
+  line-height:1.6;
+  opacity:.95;
+}
 
-    button {
-      padding: 12px 26px;
-      font-size: 18px;
-      border: none;
-      border-radius: 30px;
-      margin: 10px;
-      cursor: pointer;
-    }
+button{
+  padding:10px 22px;
+  border:none;
+  border-radius:25px;
+  font-size:16px;
+  margin:8px;
+  cursor:pointer;
+}
 
-    #yesBtn {
-      background: #00c853;
-      color: white;
-    }
+#yesBtn{background:#00c853;color:white;}
+#noBtn{background:#ff1744;color:white;position:absolute;}
 
-    #noBtn {
-      background: #ff1744;
-      color: white;
-      position: absolute;
-    }
+#message{
+  display:none;
+  margin-top:15px;
+  font-weight:bold;
+}
 
-    #message {
-      display: none;
-      font-size: 26px;
-      margin-top: 20px;
-      font-weight: bold;
-    }
+/* floating hearts */
+.heart{
+  position:fixed;
+  bottom:-20px;
+  animation:float 6s linear infinite;
+}
 
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-    }
-  </style>
+@keyframes float{
+  to{transform:translateY(-110vh);}
+}
+
+/* fireworks canvas */
+canvas{
+  position:fixed;
+  top:0;
+  left:0;
+  pointer-events:none;
+}
+
+/* music button */
+#musicBtn{
+  position:fixed;
+  top:12px;
+  right:12px;
+  font-size:22px;
+  border-radius:50%;
+  padding:10px;
+}
+</style>
 </head>
 
 <body>
 
+<button id="musicBtn">🎵</button>
 <canvas id="fireworks"></canvas>
 
 <div class="card">
-  <div class="heart">❤️</div>
 
-  <h1>Rashmi, Will You Marry Me?</h1>
+  <!-- PHOTO -->
+  <img src="photo.jpg" class="photo">
 
-  <div id="timer">Our love timer: 00:00:00</div>
+  <h2>Rashmi ❤️</h2>
 
-  <button id="yesBtn">Yes 💍</button>
-  <button id="noBtn">No 😜</button>
+  <!-- LOVE LETTER -->
+  <div class="letter">
+    From the day you came into my life,<br>
+    everything feels warmer, brighter, happier.<br><br>
 
-  <div id="message">You said YES! 💖✨  
-  Best day of my life, Rashmi ❤️</div>
+    Your smile is my peace,<br>
+    your laugh is my favorite song,<br>
+    and your love is my home.<br><br>
+
+    I don’t want just moments with you…<br>
+    I want a lifetime.<br><br>
+
+    <b>Will you be my always… my forever?</b>
+  </div>
+
+  <button id="yesBtn">Always 💖</button>
+  <button id="noBtn">Think again 😜</button>
+
+  <div id="message">
+    You just made me the happiest man alive ❤️<br>
+    Forever yours,<br>
+    — Srihari
+  </div>
+
 </div>
 
+<!-- MUSIC -->
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
 <script>
-/* ---------------- TIMER (since page open) ---------------- */
-const timer = document.getElementById("timer");
-let seconds = 0;
+/* floating hearts */
+setInterval(()=>{
+  const h=document.createElement("div");
+  h.innerHTML="❤️";
+  h.className="heart";
+  h.style.left=Math.random()*100+"vw";
+  h.style.fontSize=(15+Math.random()*25)+"px";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),6000);
+},400);
 
-setInterval(() => {
-  seconds++;
-  let h = String(Math.floor(seconds/3600)).padStart(2,'0');
-  let m = String(Math.floor((seconds%3600)/60)).padStart(2,'0');
-  let s = String(seconds%60).padStart(2,'0');
-  timer.innerText = `Our love timer: ${h}:${m}:${s}`;
-},1000);
+/* music */
+const music=document.getElementById("bgMusic");
+document.getElementById("musicBtn").onclick=()=>music.play();
 
-/* ---------------- RUNNING NO BUTTON ---------------- */
-const noBtn = document.getElementById("noBtn");
-
-noBtn.onmouseover = () => {
-  const x = Math.random() * (window.innerWidth - 100);
-  const y = Math.random() * (window.innerHeight - 50);
-  noBtn.style.left = x + "px";
-  noBtn.style.top = y + "px";
+/* running NO button */
+const noBtn=document.getElementById("noBtn");
+noBtn.onmouseover=()=>{
+  noBtn.style.left=Math.random()*(innerWidth-100)+"px";
+  noBtn.style.top=Math.random()*(innerHeight-50)+"px";
 };
 
-/* ---------------- YES CLICK + FIREWORKS ---------------- */
-const yesBtn = document.getElementById("yesBtn");
-const message = document.getElementById("message");
-
-yesBtn.onclick = () => {
-  message.style.display = "block";
-  yesBtn.style.display = "none";
-  noBtn.style.display = "none";
+/* YES click */
+const yesBtn=document.getElementById("yesBtn");
+const message=document.getElementById("message");
+yesBtn.onclick=()=>{
+  message.style.display="block";
+  yesBtn.style.display="none";
+  noBtn.style.display="none";
   startFireworks();
+  music.play();
 };
 
-/* ---------------- FIREWORKS ---------------- */
-const canvas = document.getElementById("fireworks");
-const ctx = canvas.getContext("2d");
+/* fireworks */
+const canvas=document.getElementById("fireworks");
+const ctx=canvas.getContext("2d");
+canvas.width=innerWidth;
+canvas.height=innerHeight;
+let particles=[];
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let particles = [];
-
-function createFirework() {
-  const x = Math.random()*canvas.width;
-  const y = Math.random()*canvas.height/2;
-
+function createFirework(){
+  const x=Math.random()*canvas.width;
+  const y=Math.random()*canvas.height/2;
   for(let i=0;i<80;i++){
-    particles.push({
-      x,y,
-      dx:(Math.random()-0.5)*6,
-      dy:(Math.random()-0.5)*6,
-      life:100
-    });
+    particles.push({x,y,dx:(Math.random()-0.5)*6,dy:(Math.random()-0.5)*6,life:100});
   }
 }
 
-function draw() {
-  ctx.fillStyle = "rgba(0,0,0,0.2)";
+function draw(){
+  ctx.fillStyle="rgba(0,0,0,0.2)";
   ctx.fillRect(0,0,canvas.width,canvas.height);
 
   particles.forEach((p,i)=>{
     p.x+=p.dx;
     p.y+=p.dy;
     p.life--;
-
     ctx.beginPath();
     ctx.arc(p.x,p.y,2,0,Math.PI*2);
-    ctx.fillStyle = "white";
     ctx.fill();
-
     if(p.life<=0) particles.splice(i,1);
   });
 
