@@ -3,17 +3,18 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>For Rashmi ❤️</title>
+<title>For Gubbi ❤️</title>
 
 <style>
+/* ---------------- BODY ---------------- */
 body{
   margin:0;
-  font-family:'Segoe UI',sans-serif;
   height:100vh;
-  overflow:hidden;
+  overflow:hidden; /* FULL SCREEN LOCK */
   display:flex;
   justify-content:center;
   align-items:center;
+  font-family:'Segoe UI',sans-serif;
   color:white;
 
   background:linear-gradient(-45deg,#ff758c,#ff7eb3,#ff4d6d,#ff9a9e);
@@ -27,39 +28,55 @@ body{
   100%{background-position:0% 50%;}
 }
 
-/* CARD */
+/* ---------------- CARD ---------------- */
 .card{
   width:340px;
-  max-height:90vh;
-  overflow:auto;
+  max-height:92vh;
   background:rgba(255,255,255,0.15);
-  backdrop-filter:blur(18px);
+  backdrop-filter:blur(20px);
   padding:25px;
   border-radius:30px;
   text-align:center;
-  box-shadow:0 15px 40px rgba(0,0,0,0.35);
-  z-index:2;
+  box-shadow:0 15px 40px rgba(0,0,0,0.4);
 }
 
-/* PHOTO */
+/* ---------------- GLOW NAME ---------------- */
+.name{
+  font-size:30px;
+  font-weight:bold;
+  animation:glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow{
+  from{ text-shadow:0 0 10px #fff; }
+  to{ text-shadow:0 0 25px #fff,0 0 40px #ff4d6d; }
+}
+
+/* ---------------- PHOTO ---------------- */
 .photo{
   width:130px;
   height:130px;
   border-radius:50%;
   object-fit:cover;
   border:4px solid white;
-  margin-bottom:12px;
-  box-shadow:0 5px 20px rgba(0,0,0,0.4);
+  margin:12px 0;
 }
 
-/* LETTER */
+/* ---------------- LETTER ---------------- */
 .letter{
   font-size:14px;
-  margin:15px 0;
   line-height:1.6;
-  opacity:.95;
+  margin:15px 0;
 }
 
+/* ---------------- TIMER ---------------- */
+.timer{
+  font-size:13px;
+  margin:10px 0;
+  opacity:.9;
+}
+
+/* ---------------- BUTTONS ---------------- */
 button{
   padding:10px 22px;
   border:none;
@@ -78,7 +95,7 @@ button{
   font-weight:bold;
 }
 
-/* floating hearts */
+/* ---------------- HEARTS ---------------- */
 .heart{
   position:fixed;
   bottom:-20px;
@@ -86,10 +103,10 @@ button{
 }
 
 @keyframes float{
-  to{transform:translateY(-110vh);}
+  to{ transform:translateY(-110vh); }
 }
 
-/* fireworks canvas */
+/* ---------------- FIREWORKS ---------------- */
 canvas{
   position:fixed;
   top:0;
@@ -97,7 +114,7 @@ canvas{
   pointer-events:none;
 }
 
-/* music button */
+/* ---------------- MUSIC BTN ---------------- */
 #musicBtn{
   position:fixed;
   top:12px;
@@ -116,24 +133,20 @@ canvas{
 
 <div class="card">
 
-  <!-- PHOTO -->
+  <div class="name">Rashmi ❤️</div>
+
   <img src="photo.jpg" class="photo">
 
-  <h2>Rashmi ❤️</h2>
+  <!-- LOVE TIMER -->
+  <div class="timer" id="loveTimer"></div>
 
-  <!-- LOVE LETTER -->
   <div class="letter">
     From the day you came into my life,<br>
-    everything feels warmer, brighter, happier.<br><br>
-
-    Your smile is my peace,<br>
-    your laugh is my favorite song,<br>
-    and your love is my home.<br><br>
-
-    I don’t want just moments with you…<br>
-    I want a lifetime.<br><br>
-
-    <b>Will you be my always… my forever?</b>
+    everything feels brighter and calmer.<br>
+    Your smile is my home, your love is my world.<br><br>
+    I don’t want just moments…<br>
+    I want forever with you.<br><br>
+    <b>Will you be my always?</b>
   </div>
 
   <button id="yesBtn">Always 💖</button>
@@ -142,42 +155,64 @@ canvas{
   <div id="message">
     You just made me the happiest man alive ❤️<br>
     Forever yours,<br>
-    — Srihari
+    — Subba
   </div>
 
 </div>
 
-<!-- MUSIC -->
 <audio id="bgMusic" loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-/* floating hearts */
+
+/* ---------------- LOVE TIMER ---------------- */
+/* 👉 CHANGE THIS DATE TO YOUR FIRST MEET DATE */
+const startDate = new Date("2024-11-13"); // EDIT THIS
+
+const loveTimer = document.getElementById("loveTimer");
+
+setInterval(()=>{
+  const now = new Date();
+  const diff = now - startDate;
+
+  const days = Math.floor(diff/(1000*60*60*24));
+  const hours = Math.floor((diff/(1000*60*60))%24);
+  const mins = Math.floor((diff/(1000*60))%60);
+
+  loveTimer.innerHTML =
+    `Together for ${days} days ${hours} hrs ${mins} mins ❤️`;
+},1000);
+
+
+/* ---------------- FLOATING HEARTS ---------------- */
 setInterval(()=>{
   const h=document.createElement("div");
   h.innerHTML="❤️";
   h.className="heart";
   h.style.left=Math.random()*100+"vw";
-  h.style.fontSize=(15+Math.random()*25)+"px";
   document.body.appendChild(h);
   setTimeout(()=>h.remove(),6000);
 },400);
 
-/* music */
+
+/* ---------------- MUSIC ---------------- */
 const music=document.getElementById("bgMusic");
 document.getElementById("musicBtn").onclick=()=>music.play();
 
-/* running NO button */
+
+/* ---------------- RUNNING NO ---------------- */
 const noBtn=document.getElementById("noBtn");
 noBtn.onmouseover=()=>{
   noBtn.style.left=Math.random()*(innerWidth-100)+"px";
   noBtn.style.top=Math.random()*(innerHeight-50)+"px";
 };
 
-/* YES click */
+
+/* ---------------- YES CLICK ---------------- */
 const yesBtn=document.getElementById("yesBtn");
 const message=document.getElementById("message");
+
 yesBtn.onclick=()=>{
   message.style.display="block";
   yesBtn.style.display="none";
@@ -186,16 +221,19 @@ yesBtn.onclick=()=>{
   music.play();
 };
 
-/* fireworks */
+
+/* ---------------- FIREWORKS ---------------- */
 const canvas=document.getElementById("fireworks");
 const ctx=canvas.getContext("2d");
 canvas.width=innerWidth;
 canvas.height=innerHeight;
+
 let particles=[];
 
 function createFirework(){
   const x=Math.random()*canvas.width;
   const y=Math.random()*canvas.height/2;
+
   for(let i=0;i<80;i++){
     particles.push({x,y,dx:(Math.random()-0.5)*6,dy:(Math.random()-0.5)*6,life:100});
   }
