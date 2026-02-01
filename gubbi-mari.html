@@ -32,13 +32,13 @@ body{
   background:rgba(255,255,255,0.15);
   backdrop-filter:blur(20px);
   box-shadow:0 15px 40px rgba(0,0,0,0.35);
-  position:relative;
 }
 
 /* GLOW NAME */
 .name{
   font-size:30px;
   font-weight:bold;
+  margin-bottom:10px;
   animation:glow 2s ease-in-out infinite alternate;
 }
 
@@ -60,8 +60,8 @@ body{
 /* LETTER */
 .letter{
   font-size:14px;
-  line-height:1.6;
-  margin:15px 0;
+  line-height:1.8;
+  margin:18px 0;
 }
 
 /* TIMER */
@@ -70,10 +70,12 @@ body{
   margin-bottom:10px;
 }
 
-/* BUTTONS */
+/* BUTTONS (FIXED) */
 .buttons{
-  position:relative;
-  height:60px;
+  display:flex;
+  justify-content:center;
+  gap:14px;
+  margin-top:10px;
 }
 
 button{
@@ -92,10 +94,9 @@ button{
 #noBtn{
   background:#ff1744;
   color:white;
-  position:absolute;
-  left:160px;
 }
 
+/* MESSAGE */
 #message{
   display:none;
   margin-top:15px;
@@ -146,11 +147,17 @@ canvas{
 
   <div id="loveTimer" class="timer"></div>
 
+  <!-- CLEAN NEW LINES -->
   <div class="letter">
-    From the day you came into my life,<br>
-    everything feels brighter and happier.<br>
-    Your smile is my peace, your love is my home.<br><br>
-    I don’t want just moments… I want forever with you Gubbi..<br><br>
+    From the day you came into my life,<br><br>
+
+    Everything feels brighter and happier.<br>
+    Your smile is my peace.<br>
+    Your love is my home.<br><br>
+
+    I don’t want just moments…<br>
+    I want forever with you, Gubbi.<br><br>
+
     <b>Will you be my always?</b>
   </div>
 
@@ -160,7 +167,7 @@ canvas{
   </div>
 
   <div id="message">
-    Kissy barli eega😘😘😘<br>
+    Kissy barli eega 😘😘😘<br>
     Forever’s Subba ❤️
   </div>
 
@@ -172,7 +179,7 @@ canvas{
 
 <script>
 /* LOVE TIMER */
-const startDate = new Date("2024-11-13"); // change your date
+const startDate = new Date("2024-11-13");
 const loveTimer = document.getElementById("loveTimer");
 
 setInterval(()=>{
@@ -204,14 +211,11 @@ const music=document.getElementById("bgMusic");
 document.getElementById("musicBtn").onclick=()=>music.play();
 
 
-/* fixed running button INSIDE card */
+/* playful NO button (move slightly, not crazy) */
 const noBtn=document.getElementById("noBtn");
-
 noBtn.onmouseover=()=>{
-  const maxX = 220;  // inside card
-  const maxY = 20;
-  noBtn.style.left=Math.random()*maxX+"px";
-  noBtn.style.top=Math.random()*maxY+"px";
+  noBtn.style.transform =
+    `translate(${Math.random()*20-10}px, ${Math.random()*10-5}px)`;
 };
 
 
